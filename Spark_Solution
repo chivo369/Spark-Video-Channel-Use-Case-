@@ -1,0 +1,30 @@
+Hive Queries
+
+
+#For Creating the external table for data loading in parquet schema
+
+hive> create external table video_channel(videoid string,uploader string,time_interval int,category string,length int,view int,rating float,ratingnum int,comments int,related string) STORED AS Parquet location '/home/tom/videodata';
+OK
+Time taken: 0.143 seconds
+
+#For Creating the solution tables for data analysis in parquet schema
+
+hive> create external table categories(category string,num_videos int) STORED AS Parquet location '/home/tom/cat';
+OK
+Time taken: 0.098 seconds
+hive> create external table ratings(videoid string,rating float) STORED AS Parquet location '/home/tom/rat';
+OK
+Time taken: 0.114 seconds
+ 
+
+Spark Solution
+
+Run the python files in the spark
+
+
+./spark-submit /home/tom/sparkdataloading.py
+
+./spark-submit /home/tom/sparkdataanalysis.py
+
+
+
